@@ -18,18 +18,19 @@ export async function generateMetadata({ params }: { params: IParams }) {
 export default async function ListByCategory({ params }: { params: IParams }) {
   const booksData = await getBooks(params.id);
   const books = booksData.results.books;
+
   return (
     <MainContainer>
       <Heading type="h1" text={booksData.results.list_name} />
       <GridContainer>
-        {books.map((item) => (
+        {books.map((item: any) => (
           <BookContainer
             key={item.title}
             imagePath={item.book_image}
             title={item.title}
             author={item.author}
             link={item.amazon_product_url}
-          ></BookContainer>
+          />
         ))}
       </GridContainer>
     </MainContainer>
