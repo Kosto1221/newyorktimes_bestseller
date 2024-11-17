@@ -5,17 +5,19 @@ import MainContainer from "../../../../components/common/mainContainer";
 import Heading from "../../../../components/common/heading";
 
 interface IParams {
-  params: { id: string };
+  id: string;
 }
 
-export async function generateMetadata({ params: { id } }: IParams) {
+export async function generateMetadata({ params }: { params: IParams }) {
+  const { id } = await params;
   const category = await getBooks(id);
   return {
     title: category.results.list_name,
   };
 }
 
-export default async function ListByCategory({ params: { id } }: IParams) {
+export default async function ListByCategory({ params }: { params: IParams }) {
+  const { id } = await params;
   const booksData = await getBooks(id);
   const books = booksData.results.books;
   return (
