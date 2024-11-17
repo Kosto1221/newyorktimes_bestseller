@@ -1,4 +1,4 @@
-import styles from "./Heading.module.css";
+import styles from "./heading.module.css";
 
 interface HeadingProps {
   type: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
