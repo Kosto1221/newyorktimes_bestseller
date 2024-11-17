@@ -4,18 +4,18 @@ import GridContainer from "../../../../components/category/gridContainer";
 import MainContainer from "../../../../components/common/mainContainer";
 import Heading from "../../../../components/common/heading";
 
-export async function generateMetadata({ params: { id } }) {
-  const category = await getBooks(id);
+interface IParams {
+  id: string;
+}
+
+export async function generateMetadata({ params }: { params: IParams }) {
+  const category = await getBooks(params.id);
   return {
     title: category.results.list_name,
   };
 }
 
-export default async function ListByCategory({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function ListByCategory({ params }: { params: IParams }) {
   const booksData = await getBooks(params.id);
   const books = booksData.results.books;
   return (
