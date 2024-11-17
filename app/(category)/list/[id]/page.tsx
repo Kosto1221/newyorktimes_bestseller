@@ -15,7 +15,11 @@ export async function generateMetadata({ params }: { params: IParams }) {
   };
 }
 
-export default async function ListByCategory({ params }: { params: IParams }) {
+export default async function ListByCategory({
+  params,
+}: {
+  params: IParams | any;
+}) {
   const booksData = await getBooks(params.id);
   const books = booksData.results.books;
 
