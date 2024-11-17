@@ -8,17 +8,29 @@ interface IParams {
   id: string;
 }
 
-export async function generateMetadata({ params }: { params: IParams }) {
-  const { id } = params;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<IParams>;
+}) {
+  const resolvedParams = await params;
+  const { id } = resolvedParams;
+  console.log(id);
+
   const category = await getBooks(id);
   return {
     title: category.results.list_name,
   };
 }
 
-// Page component
-export default async function ListByCategory({ params }: { params: IParams }) {
-  const { id } = params;
+export default async function ListByCategory({
+  params,
+}: {
+  params: Promise<IParams>;
+}) {
+  const resolvedParams = await params;
+  const { id } = resolvedParams;
+
   const booksData = await getBooks(id);
   const books = booksData.results.books;
 
