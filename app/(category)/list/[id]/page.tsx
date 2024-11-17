@@ -16,8 +16,7 @@ export default async function ListByCategory({
 }: {
   params: { id: string };
 }) {
-  const { id } = await params;
-  const booksData = await getBooks(id);
+  const booksData = await getBooks(params.id);
   const books = booksData.results.books;
   return (
     <MainContainer>
